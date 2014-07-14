@@ -8,7 +8,7 @@ check() {
     if test -L /var/run;then
         return 255
     else
-        require_binaries bash find ldconfig mv rm cp ln || return 1
+        require_binaries bash find ldconfig mv rm cp ln findmnt || return 1
         return 0
     fi
 }
@@ -20,7 +20,7 @@ depends() {
 
 # called by dracut
 install() {
-    inst_multiple bash find ldconfig mv rm cp ln
+    inst_multiple bash find ldconfig mv rm cp ln findmnt
     inst_hook pre-pivot 99 "$moddir/do-convertfs.sh"
     inst_script "$moddir/convertfs.sh" /usr/bin/convertfs
     inst_script "$moddir/convertrunfs.sh" /usr/bin/convertrunfs
