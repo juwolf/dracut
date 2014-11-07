@@ -5,4 +5,5 @@
 
 install() {
     inst_hook cmdline 99 "$moddir/parse-suse-initrd.sh"
+    inst_hook pre-udev 99 "$moddir/log-dracut-cmdline.sh"
 }
